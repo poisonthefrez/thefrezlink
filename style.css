@@ -1,0 +1,124 @@
+/* Импортируем шрифт и сбрасываем дефолтные стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Comfortaa", sans-serif;
+    color: #fff;
+    background-color: #000;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Фоновое изображение */
+.bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+}
+
+.bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4) blur(2px);
+}
+
+/* Центровка контента */
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Аватар и заголовки */
+.avatar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 93, 93, 0.5);
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+/* Ссылки-соцсети */
+.social-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 280px;
+}
+
+/* --- Кнопки --- */
+.btn {
+    position: relative; /* чтобы можно было точно позиционировать иконку */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    padding: .8rem 1rem;
+    background: rgba(255, 176, 176, 0.15);
+    border: 1px solid rgba(255, 93, 93, 0.25);
+    border-radius: 12px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    transition: all 0.2s ease;
+    overflow: hidden; /* чтобы иконка не вылазила */
+}
+
+/* Иконка прижата к левой части */
+.btn img {
+    position: absolute;
+    left: 15px; /* отступ слева */
+    width: 30px;
+    height: 30px;
+}
+
+/* Hover эффект */
+.btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+/* Адаптив */
+@media (max-width: 500px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+    .social-group {
+        max-width: 90%;
+    }
+}
