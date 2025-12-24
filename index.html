@@ -4,34 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
-    <title>Link in Bio</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Jockey+One&display=swap" rel="stylesheet">
+    <title>THEFREZ — Digital Presence</title>
 </head>
 <body>
     <div class="bg">
-        <img src="img/roses.jpg" alt="Roses">
+        <video class="bg-video" autoplay muted loop playsinline>
+            <source src="webback.mp4" type="video/mp4">
+        </video>
+        <div class="bg-overlay"></div>
     </div>
 
-    <div class="main">
-        <div class="avatar-group">
-            <img src="img/avatar.jpg" alt="Avatar" class="avatar">
-            <h1>Ulechka</h1>
-            <h2>Links to my social media 🌸</h2>
-        </div>
+    <div class="cursor-glow" id="cursorGlow"></div>
 
-        <div class="social-group">
-            <a href="https://www.instagram.com/m1lvxx/" target="_blank" rel="noopener noreferrer" class="btn">
-                <img src="img/Instagram Pulsar Color.png" alt="Instagram"> Instagram
+    <main class="main">
+        <header class="avatar-group animate-item">
+            <div class="avatar-wrapper">
+                <img src="img/avatar.webp" alt="Влад" class="avatar">
+            </div>
+            <h1>THEFREZ</h1>
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                <h2>AVAILABLE FOR PROJECTS</h2>
+            </div>
+        </header>
+
+        <nav class="social-group">
+            <a href="https://www.instagram.com/poisonthefrez/" target="_blank" class="btn js-magnetic animate-item">
+                <div class="btn-gloss"></div>
+                <img src="https://img.icons8.com/ios/50/FFFFFF/instagram-new--v1.png" class="btn-icon" alt="Instagram">
+                <span class="btn-text">Instagram</span>
+                <span class="btn-meta">01</span>
             </a>
-            <a href="https://www.tiktok.com/@angelzz.7" target="_blank" rel="noopener noreferrer" class="btn">
-                <img src="img/TikTok Pulsar Color.png" alt="TikTok"> TikTok
+            <a href="https://t.me/poisonthefrez" target="_blank" class="btn js-magnetic animate-item">
+                <div class="btn-gloss"></div>
+                <img src="https://img.icons8.com/ios/50/FFFFFF/telegram.png" class="btn-icon" alt="Telegram">
+                <span class="btn-text">Telegram</span>
+                <span class="btn-meta">02</span>
             </a>
-            <a href="https://t.me/+yccOYFwv-9M2N2Zi" target="_blank" rel="noopener noreferrer" class="btn">
-                <img src="img/Telegram App Pulsar Color.png" alt="Telegram"> Channel
+            <a href="https://www.behance.net/7e985531" target="_blank" class="btn js-magnetic animate-item">
+                <div class="btn-gloss"></div>
+                <img src="https://img.icons8.com/ios/50/FFFFFF/behance.png" class="btn-icon" alt="Behance">
+                <span class="btn-text">Behance</span>
+                <span class="btn-meta">03</span>
             </a>
-        </div>
-    </div>
+            <a href="https://poisonthefrez.github.io/folio/" target="_blank" class="btn js-magnetic animate-item">
+                <div class="btn-gloss"></div>
+                <img src="https://img.icons8.com/ios/50/FFFFFF/web.png" class="btn-icon" alt="Portfolio">
+                <span class="btn-text">WebFolio</span>
+                <span class="btn-meta">04</span>
+            </a>
+        </nav>
+
+        <footer class="system-footer animate-item">
+            <div class="footer-item">
+                <span class="label">LOCATION</span>
+                <span class="value">DUBLIN, IE</span>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-item">
+                <span class="label">LOCAL TIME</span>
+                <span class="value" id="localTime">00:00:00</span>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>

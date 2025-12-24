@@ -1,124 +1,206 @@
-/* Импортируем шрифт и сбрасываем дефолтные стили */
+/* THEFREZ PREMIER UI 3.5 — FINAL STABLE
+   Style: Apple VisionOS / Liquid Glass
+*/
+
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.02);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --accent-white: rgba(255, 255, 255, 0.9);
+    --transition-fluid: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
-    font-family: "Comfortaa", sans-serif;
+    font-family: "JetBrains Mono", monospace;
+    background: #000;
     color: #fff;
-    background-color: #000;
     height: 100vh;
+    width: 100vw;
     overflow: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Фоновое изображение */
+/* ================= BACKGROUND LAYER ================= */
 .bg {
     position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: -2; /* Самый нижний слой */
 }
 
-.bg img {
+.bg-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.4) blur(2px);
+    filter: brightness(0.4) contrast(1.1);
 }
 
-/* Центровка контента */
-.main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    height: 100vh;
-    text-align: center;
+.bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 20%, #000 120%);
+    opacity: 0.5;
 }
 
-/* Аватар и заголовки */
-.avatar-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
-}
-
-.avatar {
-    width: 120px;
-    height: 120px;
+/* Эффект свечения под курсором */
+.cursor-glow {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
     border-radius: 50%;
-    border: 2px solid rgba(255, 93, 93, 0.5);
-    object-fit: cover;
-    margin-bottom: 0.5rem;
+    pointer-events: none;
+    z-index: -1; /* Между видео и контентом */
+    transform: translate(-50%, -50%);
+    will-change: left, top;
 }
+
+/* ================= MAIN CONTENT ================= */
+.main {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    padding: 8vh 20px;
+}
+
+/* Аватар и Заголовок */
+.avatar-group { text-align: center; }
+.avatar-wrapper { width: 100px; height: 100px; margin: 0 auto 1.2rem; }
+.avatar { 
+    width: 100%; height: 100%; border-radius: 50%; 
+    object-fit: cover; border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+/* ================= TYPOGRAPHY REFINED (MATCHING SYSTEM FOOTER) ================= */
 
 h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
+    font-family: "JetBrains Mono", monospace; /* Меняем Jockey One на Mono для единства */
+    font-size: 1.8rem; /* Уменьшаем размер для более строгого вида */
+    font-weight: 500;
+    letter-spacing: 0.3em; /* Широкий интервал как в премиальных интерфейсах */
+    text-transform: uppercase;
+    color: var(--accent-white);
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
+    opacity: 0.95;
+}
+
+.status-badge {
+    margin-top: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 16px;
+    background: rgba(255, 255, 255, 0.02); /* Почти прозрачный фон */
+    border: 0.5px solid rgba(255, 255, 255, 0.05);
+    border-radius: 100px;
+    backdrop-filter: blur(5px);
 }
 
 h2 {
-    font-size: 1rem;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.55rem; /* Размер идентичен меткам LOCATION/TIME в футере */
     font-weight: 400;
-    opacity: 0.8;
+    letter-spacing: 0.25em; /* Тот же кернинг, что и внизу */
+    text-transform: uppercase;
+    color: #fff;
+    opacity: 0.4; /* Делаем H2 приглушенным, как вспомогательный текст */
 }
 
-/* Ссылки-соцсети */
+.status-dot {
+    width: 4px;
+    height: 4px;
+    background: #55ff99;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(85, 255, 153, 0.6);
+    animation: statusPulse 3s infinite ease-in-out;
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.9); }
+}
+
+/* Кнопки */
 .social-group {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    gap: 12px;
     width: 100%;
-    max-width: 280px;
+    max-width: 300px;
 }
 
-/* --- Кнопки --- */
 .btn {
-    position: relative; /* чтобы можно было точно позиционировать иконку */
+    position: relative;
+    width: 100%;
+    min-height: 58px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 90%;
-    padding: .8rem 1rem;
-    background: rgba(255, 176, 176, 0.15);
-    border: 1px solid rgba(255, 93, 93, 0.25);
-    border-radius: 12px;
+    padding: 0 24px;
     text-decoration: none;
-    color: #fff;
-    font-weight: 600;
+    border-radius: 16px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(25px) saturate(160%);
+    -webkit-backdrop-filter: blur(25px) saturate(160%);
+    color: var(--accent-white);
+    font-size: 0.85rem;
+    transition: var(--transition-fluid), transform 0.2s ease-out;
+    overflow: hidden;
+}
+
+.btn-icon {
+    width: 20px; height: 20px; margin-right: 18px;
+    filter: brightness(10); opacity: 0.6;
+}
+
+.btn-meta { margin-left: auto; font-size: 0.6rem; opacity: 0.3; }
+
+/* ================= ANIMATION LOGIC ================= */
+.animate-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Последовательная задержка появления (Stagger) */
+.animate-item:nth-child(1) { animation-delay: 0.1s; }
+.animate-item:nth-child(2) { animation-delay: 0.2s; }
+.animate-item:nth-child(3) { animation-delay: 0.3s; }
+.animate-item:nth-child(4) { animation-delay: 0.4s; }
+.animate-item:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Интерактивы */
+@media (hover: hover) {
+    .btn:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+    .btn:active { transform: scale(0.97) !important; }
+}
+
+/* Футер */
+.system-footer {
+    display: flex; gap: 30px; padding: 12px 25px;
+    background: rgba(255,255,255,0.02);
+    border: 0.5px solid rgba(255,255,255,0.06);
+    border-radius: 100px;
     backdrop-filter: blur(10px);
-    transition: all 0.2s ease;
-    overflow: hidden; /* чтобы иконка не вылазила */
 }
 
-/* Иконка прижата к левой части */
-.btn img {
-    position: absolute;
-    left: 15px; /* отступ слева */
-    width: 30px;
-    height: 30px;
-}
-
-/* Hover эффект */
-.btn:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-2px);
-}
-
-/* Адаптив */
-@media (max-width: 500px) {
-    h1 {
-        font-size: 1.5rem;
-    }
-    .avatar {
-        width: 100px;
-        height: 100px;
-    }
-    .social-group {
-        max-width: 90%;
-    }
-}
+.footer-item { display: flex; flex-direction: column; }
+.label { font-size: 0.5rem; opacity: 0.4; letter-spacing: 1px; }
+.value { font-size: 0.7rem; color: rgba(255,255,255,0.7); }
